@@ -1,0 +1,42 @@
+services:
+    db:
+        image: postgres:latest
+        restart: always
+        env_file:
+            - ../../.env.postgres
+        ports:
+            - '5432:5432'
+        volumes:
+            - db:/var/lib/postgresql/data
+
+    strapi_cms:
+        build:
+            context: ../../strapi_cms
+            dockerfile: ../docker/local/Dockerfile.strapi
+        container_name: strapi_cms
+        restart: unless-stopped
+        env_file: ../../.env.strapi
+        depends_on:
+            - db
+        volumes:
+            - ../../strapi_cms:/app
+            - /app/node_modules
+        ports:
+            - '1337:1337'
+
+    frontend:
+        build:
+            context: ../../next_frontend
+            dockerfile: ../docker/local/Dockerfile.next
+        container_name: next_frontend
+        restart: unless-stopped
+        env_file: ../../.env.next
+        depends_on:
+            - strapi_cms
+        volumes:
+            - ../../next_frontend:/app
+            - /app/node_modules
+        ports:
+            - '3000:3000'
+volumes:
+    db:

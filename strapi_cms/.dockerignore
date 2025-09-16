@@ -1,0 +1,13 @@
+# Игнорируем ненужные файлы
+node_modules
+.build
+.cache
+.tmp
+public/uploads
+public/build
+Dockerfile
+.dockerignore
+.git
+.gitignore
+README.md
+*.log
