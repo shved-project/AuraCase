@@ -1,5 +1,6 @@
 import {Metadata} from "next";
 import "./globals.css";
+import Layout from "@/components/layout/Layout";
 
 export const metadata: Metadata = {
     title: {
@@ -15,7 +16,9 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="ru">
-            <body>{children}</body>
+            <body>
+                <Layout>{children}</Layout>
+            </body>
         </html>
     );
 }
