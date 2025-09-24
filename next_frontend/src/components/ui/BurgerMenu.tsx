@@ -22,7 +22,7 @@ import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import {useState} from "react";
 import Link from "next/link";
-import NAV_MENU from "@/constants/nav_menu";
+import NAV_MENU, {NavItem} from "@/constants/nav_menu";
 
 const BurgerMenu = () => {
     const [openMenu, setOpenMenu] = useState(false);
@@ -30,6 +30,69 @@ const BurgerMenu = () => {
 
     const handleOpenMenu = () => {
         setOpenMenu((open) => !open);
+    };
+
+    const renderNavItem = (item: NavItem) => {
+        if (item.type === "simple") {
+            return (
+                <Link href={item.path} style={{width: "100%"}} onClick={handleOpenMenu}>
+                    <ListItemButton>
+                        <ListItemIcon sx={{minWidth: "35px"}}>
+                            <item.icon />
+                        </ListItemIcon>
+                        <ListItemText primary={item.label} />
+                    </ListItemButton>
+                </Link>
+            );
+        }
+
+        return (
+            <ListItemButton>
+                <Accordion
+                    sx={{
+                        width: "100%",
+                        background: "none",
+                        boxShadow: "none",
+                    }}
+                >
+                    <AccordionSummary
+                        expandIcon={<KeyboardArrowDownIcon />}
+                        sx={{
+                            padding: 0,
+                            minHeight: "auto",
+                            "& .MuiAccordionSummary-content": {
+                                margin: 0,
+                                alignItems: "center",
+                            },
+                            "&.Mui-expanded": {
+                                minHeight: "auto",
+                            },
+                        }}
+                    >
+                        <ListItemIcon sx={{minWidth: "35px"}}>
+                            <item.icon />
+                        </ListItemIcon>
+                        <ListItemText primary={item.label} />
+                    </AccordionSummary>
+                    <AccordionDetails sx={{padding: 0}}>
+                        <List>
+                            {item.categories.map((item) => (
+                                <ListItem disablePadding key={item.id}>
+                                    <Link href={item.path} style={{width: "100%"}} onClick={handleOpenMenu}>
+                                        <ListItemButton>
+                                            <ListItemIcon sx={{minWidth: "35px"}}>
+                                                <item.icon />
+                                            </ListItemIcon>
+                                            <ListItemText primary={item.label} />
+                                        </ListItemButton>
+                                    </Link>
+                                </ListItem>
+                            ))}
+                        </List>
+                    </AccordionDetails>
+                </Accordion>
+            </ListItemButton>
+        );
     };
 
     return (
@@ -68,66 +131,7 @@ const BurgerMenu = () => {
                             <List>
                                 {NAV_MENU.map((item) => (
                                     <ListItem disablePadding key={item.id}>
-                                        {item.type === "simple" ? (
-                                            <Link href={item.path} style={{width: "100%"}} onClick={handleOpenMenu}>
-                                                <ListItemButton>
-                                                    <ListItemIcon sx={{minWidth: "35px"}}>
-                                                        <item.icon />
-                                                    </ListItemIcon>
-                                                    <ListItemText primary={item.label} />
-                                                </ListItemButton>
-                                            </Link>
-                                        ) : (
-                                            <ListItemButton>
-                                                <Accordion
-                                                    sx={{
-                                                        width: "100%",
-                                                        background: "none",
-                                                        boxShadow: "none",
-                                                    }}
-                                                >
-                                                    <AccordionSummary
-                                                        expandIcon={<KeyboardArrowDownIcon />}
-                                                        sx={{
-                                                            padding: 0,
-                                                            minHeight: "auto",
-                                                            "& .MuiAccordionSummary-content": {
-                                                                margin: 0,
-                                                                alignItems: "center",
-                                                            },
-                                                            "&.Mui-expanded": {
-                                                                minHeight: "auto",
-                                                            },
-                                                        }}
-                                                    >
-                                                        <ListItemIcon sx={{minWidth: "35px"}}>
-                                                            <item.icon />
-                                                        </ListItemIcon>
-                                                        <ListItemText primary={item.label} />
-                                                    </AccordionSummary>
-                                                    <AccordionDetails sx={{padding: 0}}>
-                                                        <List>
-                                                            {item.categories.map((item) => (
-                                                                <ListItem disablePadding key={item.id}>
-                                                                    <Link
-                                                                        href={item.path}
-                                                                        style={{width: "100%"}}
-                                                                        onClick={handleOpenMenu}
-                                                                    >
-                                                                        <ListItemButton>
-                                                                            <ListItemIcon sx={{minWidth: "35px"}}>
-                                                                                <item.icon />
-                                                                            </ListItemIcon>
-                                                                            <ListItemText primary={item.label} />
-                                                                        </ListItemButton>
-                                                                    </Link>
-                                                                </ListItem>
-                                                            ))}
-                                                        </List>
-                                                    </AccordionDetails>
-                                                </Accordion>
-                                            </ListItemButton>
-                                        )}
+                                        {renderNavItem(item)}
                                     </ListItem>
                                 ))}
                             </List>
