@@ -7,7 +7,7 @@ export const metadata: Metadata = {
 
 export default function Home() {
     return (
-        <ul className="flex w-full items-center justify-center gap-8 my-10">
+        <ul className="flex w-full items-center justify-center gap-8 my-10 mt-30">
             <li>
                 <Link href={"/register"}>Регистрация</Link>
             </li>
