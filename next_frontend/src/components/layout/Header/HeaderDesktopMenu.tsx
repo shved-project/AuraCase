@@ -9,10 +9,12 @@ import ThemeToggle from "@/components/ui/ThemeToggle";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 
 const HeaderDesktopMenu = () => {
     const isDesktop = useMediaQuery((theme) => theme.breakpoints.up("md"));
 
+    const [isAuth, setIsAuth] = useState(true);
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
     const open = Boolean(anchorEl);
 
@@ -99,18 +101,26 @@ const HeaderDesktopMenu = () => {
                     <Box>
                         <ThemeToggle />
                     </Box>
-                    <Box sx={{display: "flex", alignItems: "center", gap: 1}}>
-                        <Link href="/register">
-                            <Button variant="text" color="inherit">
-                                Регистрация
-                            </Button>
+                    {isAuth ? (
+                        <Link href="/profile/user">
+                            <IconButton color="inherit">
+                                <AccountCircleIcon fontSize="large" />
+                            </IconButton>
                         </Link>
-                        <Link href="/login">
-                            <Button variant="outlined" color="inherit">
-                                Войти
-                            </Button>
-                        </Link>
-                    </Box>
+                    ) : (
+                        <Box sx={{display: "flex", alignItems: "center", gap: 1}}>
+                            <Link href="/register">
+                                <Button variant="text" color="inherit">
+                                    Регистрация
+                                </Button>
+                            </Link>
+                            <Link href="/login">
+                                <Button variant="outlined" color="inherit">
+                                    Войти
+                                </Button>
+                            </Link>
+                        </Box>
+                    )}
                 </Stack>
             </Stack>
         </nav>
