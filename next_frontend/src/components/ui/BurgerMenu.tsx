@@ -102,9 +102,10 @@ const BurgerMenu = () => {
             </IconButton>
             <Drawer
                 open={openMenu}
+                onClose={handleOpenMenu}
                 sx={{
                     "& .MuiDrawer-paper": {
-                        width: "100%",
+                        width: {xs: "100%", sm: "400px"},
                     },
                 }}
             >
@@ -141,7 +142,7 @@ const BurgerMenu = () => {
                                 direction="row"
                                 justifyContent="space-between"
                                 alignItems="center"
-                                sx={{paddingBlock: 1, paddingInline: 2}}
+                                sx={{paddingBlock: 4, paddingInline: 2}}
                             >
                                 <Link href="/register" onClick={handleOpenMenu}>
                                     <Typography color="primary" sx={{textDecoration: "underline"}}>

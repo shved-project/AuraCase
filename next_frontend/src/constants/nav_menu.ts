@@ -22,7 +22,7 @@ interface SimpleNavItem extends BaseNavItem {
     path: string;
 }
 
-interface CategoryNavItem extends BaseNavItem {
+export interface CategoryNavItem extends BaseNavItem {
     type: "category";
     categories: SimpleNavItem[];
 }
