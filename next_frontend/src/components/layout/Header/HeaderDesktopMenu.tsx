@@ -44,7 +44,14 @@ const HeaderDesktopMenu = () => {
                             <Link href="/">Главная</Link>
                         </li>
                         <li>
-                            <button type="button" className="flex items-end gap-1 cursor-pointer" onClick={handleClick}>
+                            <button
+                                type="button"
+                                className="flex items-end gap-1 cursor-pointer"
+                                onClick={handleClick}
+                                aria-expanded={open}
+                                aria-haspopup="true"
+                                aria-controls="products-menu"
+                            >
                                 Товары
                                 <KeyboardArrowDownIcon
                                     fontSize="small"
@@ -57,6 +64,7 @@ const HeaderDesktopMenu = () => {
                                 onClose={handleClose}
                                 disableScrollLock={true}
                                 sx={{marginTop: "30px"}}
+                                id="products-menu"
                             >
                                 {products?.categories.map((item) => (
                                     <MenuItem sx={{padding: 0}} key={item.id}>
@@ -75,12 +83,12 @@ const HeaderDesktopMenu = () => {
                 <Stack direction="row" alignItems="center" spacing={5}>
                     <Box sx={{display: "flex", alignItems: "center", gap: 0.2}}>
                         <Link href="/favorites">
-                            <IconButton color="inherit" sx={{padding: 0.8}}>
+                            <IconButton color="inherit" sx={{padding: 0.8}} aria-label="Избранное">
                                 <FavoriteIcon />
                             </IconButton>
                         </Link>
                         <Link href="/cart">
-                            <IconButton color="inherit" sx={{padding: 0.8}}>
+                            <IconButton color="inherit" sx={{padding: 0.8}} aria-label="Корзина">
                                 <Badge
                                     badgeContent={1}
                                     color="secondary"
@@ -103,7 +111,7 @@ const HeaderDesktopMenu = () => {
                     </Box>
                     {isAuth ? (
                         <Link href="/profile/user">
-                            <IconButton color="inherit">
+                            <IconButton color="inherit" aria-label="Профиль">
                                 <AccountCircleIcon fontSize="large" />
                             </IconButton>
                         </Link>
