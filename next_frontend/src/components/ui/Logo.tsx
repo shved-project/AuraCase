@@ -2,7 +2,11 @@ import {Box, Typography} from "@mui/material";
 import Link from "next/link";
 import PhoneAndroidIcon from "@mui/icons-material/PhoneAndroid";
 
-const Logo = () => {
+interface Props {
+    size?: "small" | "large";
+}
+
+const Logo = ({size = "small"}: Props) => {
     return (
         <Link href="/">
             <Box
@@ -18,14 +22,16 @@ const Logo = () => {
                         border: "1px solid",
                         alignItems: "center",
                         justifyContent: "center",
-                        width: "25px",
+                        width: size === "small" ? "25px" : "50px",
                         aspectRatio: "1/1",
                         borderRadius: "50%",
                     }}
                 >
-                    <PhoneAndroidIcon sx={{transform: "rotate(-30deg)", fontSize: "15px"}} />
+                    <PhoneAndroidIcon
+                        sx={{transform: "rotate(-30deg)", fontSize: size === "small" ? "15px" : "30px"}}
+                    />
                 </Box>
-                <Typography sx={{fontSize: "10px"}}>AuraCase</Typography>
+                <Typography sx={{fontSize: size === "small" ? "10px" : "15px"}}>AuraCase</Typography>
             </Box>
         </Link>
     );
