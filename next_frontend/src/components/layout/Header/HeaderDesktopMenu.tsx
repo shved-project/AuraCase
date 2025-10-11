@@ -14,7 +14,7 @@ import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 const HeaderDesktopMenu = () => {
     const isDesktop = useMediaQuery((theme) => theme.breakpoints.up("md"));
 
-    const [isAuth, setIsAuth] = useState(true);
+    const [isAuth, setIsAuth] = useState(false);
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
     const open = Boolean(anchorEl);
 
