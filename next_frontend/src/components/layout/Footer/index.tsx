@@ -30,7 +30,7 @@ const Footer = () => {
                     </Stack>
                 </Stack>
             </Container>
-            <Box sx={{textAlign: "center", backgroundColor: "#000", paddingY: 0.5}}>
+            <Box sx={{textAlign: "center", backgroundColor: "#000", color: "#fff", paddingY: 0.5}}>
                 © 2025 AuraCase. Все права защищены.
             </Box>
         </Paper>

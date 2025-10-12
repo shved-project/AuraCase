@@ -1,18 +1,16 @@
 "use client";
 
-import {IconButton, Tooltip} from "@mui/material";
-import {useState} from "react";
+import {IconButton, Tooltip, useTheme} from "@mui/material";
 import LightModeIcon from "@mui/icons-material/LightMode";
 import DarkModeIcon from "@mui/icons-material/DarkMode";
+import useThemeStore from "@/store/themeStore";
 
 const ThemeToggle = () => {
-    const [theme, setTheme] = useState<"light" | "dark">("light");
+    const {toggleMode} = useThemeStore();
+    const themeMui = useTheme();
+    const isLightMode = themeMui.palette.mode === "light";
 
-    const themeText = `Сменить на ${theme === "light" ? "тёмную" : "светлую"} тему`;
-
-    const handleToggleTheme = () => {
-        setTheme((theme) => (theme === "light" ? "dark" : "light"));
-    };
+    const themeText = `Сменить на ${isLightMode ? "тёмную" : "светлую"} тему`;
 
     return (
         <Tooltip title={themeText} arrow>
@@ -20,9 +18,9 @@ const ThemeToggle = () => {
                 aria-label={themeText}
                 color="inherit"
                 sx={{border: "1px solid", borderRadius: "5px", padding: 0.5}}
-                onClick={handleToggleTheme}
+                onClick={toggleMode}
             >
-                {theme === "light" ? <LightModeIcon fontSize="small" /> : <DarkModeIcon fontSize="small" />}
+                {isLightMode ? <LightModeIcon fontSize="small" /> : <DarkModeIcon fontSize="small" />}
             </IconButton>
         </Tooltip>
     );
