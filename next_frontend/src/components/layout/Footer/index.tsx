@@ -1,4 +1,4 @@
-import {Box, Button, Stack} from "@mui/material";
+import {Box, Button, Paper, Stack} from "@mui/material";
 import Logo from "../../ui/Logo";
 import Link from "next/link";
 import Container from "../Container";
@@ -7,7 +7,7 @@ import FOOTER_LINKS from "@/constants/footer_links";
 
 const Footer = () => {
     return (
-        <Box component="footer" sx={{backgroundColor: "primary.main", color: "#fff"}}>
+        <Paper component="footer" sx={{backgroundColor: "primary.main"}}>
             <Container>
                 <Stack direction={{sm: "row"}} justifyContent={{sm: "space-between"}} gap={{xs: 4, sm: 15}}>
                     <Stack
@@ -33,7 +33,7 @@ const Footer = () => {
             <Box sx={{textAlign: "center", backgroundColor: "#000", paddingY: 0.5}}>
                 © 2025 AuraCase. Все права защищены.
             </Box>
-        </Box>
+        </Paper>
     );
 };
 
