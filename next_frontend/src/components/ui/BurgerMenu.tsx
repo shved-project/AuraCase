@@ -145,7 +145,7 @@ const BurgerMenu = () => {
                                 sx={{paddingBlock: 4, paddingInline: 2}}
                             >
                                 <Link href="/register" onClick={handleOpenMenu}>
-                                    <Typography color="primary" sx={{textDecoration: "underline"}}>
+                                    <Typography color="inherit" sx={{textDecoration: "underline"}}>
                                         Регистрация
                                     </Typography>
                                 </Link>
