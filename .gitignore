@@ -17,5 +17,4 @@ npm-debug.log*
 *.ts.map
 .DS_Store
 
-public/
 .tmp/
